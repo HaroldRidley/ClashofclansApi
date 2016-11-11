@@ -5,11 +5,12 @@ require_once "ClanAPI.php";
 class Location extends ClanAPI
 {
 
-    private $url, $tag;
+    private $url, $id;
 
-    public function __construct()
+    public function __construct($id = null)
     {
         $this->setUrl("https://api.clashofclans.com/v1/locations/");
+        $this->setId($id);
 
     }
 
@@ -18,12 +19,20 @@ class Location extends ClanAPI
         return $this->call($this->getUrl());
 
     }
+    public function getLocation(){
 
-    public function getPlayerRankings(){
+        return $this->call($this->getUrl(), null, $this->getId());
 
     }
 
+    public function getPlayerRankings(){
+
+        return $this->call($this->getUrl(), null, $this->getId(), 'players');
+    }
+
     public function getClanRankings(){
+        return $this->call($this->getUrl(), null, $this->getId(), 'clans');
+
 
     }
 
@@ -46,17 +55,17 @@ class Location extends ClanAPI
     /**
      * @return null
      */
-    public function getTag()
+    public function getId()
     {
-        return $this->tag;
+        return $this->id;
     }
 
     /**
-     * @param null $tag
+     * @param null $id
      */
-    public function setTag($tag)
+    public function setId($id)
     {
-        $this->tag = $tag;
+        $this->id = $id;
     }
 
 }

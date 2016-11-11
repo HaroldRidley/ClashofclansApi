@@ -35,12 +35,12 @@ class Clan extends ClanAPI
     }
 
     public function getClanMembers(){
-        return $this->call($this->getUrl(), $this->getTag(), 'members');
+        return $this->call($this->getUrl(), $this->getTag(),null, 'members');
 
     }
 
     public function getClanWarLog(){
-        return $this->call($this->getUrl(), $this->getTag(), 'warlog');
+        return $this->call($this->getUrl(), $this->getTag(),null, 'warlog');
 
     }
 

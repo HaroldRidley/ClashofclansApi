@@ -14,12 +14,11 @@ class ClanAPI
             $full_url = (!is_null($action)) ? $full_url . "/" . $action : $full_url;
         }
         elseif(!is_null($id)){
-            $full_url = $url . $id . $action;
+            $full_url = $url . $id . "/" .$action;
         }
         else{
             $full_url = $url;
         }
-
 
         $ch = curl_init($full_url);
 
@@ -97,8 +96,9 @@ class ClanAPI
 
     private function parseini()
     {
+        $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
-        $ini_array = parse_ini_file('ini/clash.ini');
+        $ini_array = parse_ini_file($root.'/clashofclans/ini/clash.ini');
 //        die(var_dump($ini_array));
 
         if (empty($ini_array['token'])) {
